@@ -25,6 +25,6 @@ test_loader = DataLoader(test_dataset, batch_size=batch_size,
 
 model.to(device)
 
-save_model_features(train_loader, model, output_size=(1,1))
+save_model_features(test_loader, model, output_size=(1,1))
 
 print('hallelujah!')
