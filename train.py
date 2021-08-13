@@ -50,7 +50,7 @@ def save_model_features(loader, model, output_size):
 
     for b, (x, y) in enumerate(tqdm(loader)):
         with torch.no_grad():
-            features = model.extract_features()
+            features = model.extract_features(x)
             features = F.adaptive_avg_pool2d(features, output_size)
 
         images.append(features.reshape(x.shape[0], -1).detach().cpu().numpy())
