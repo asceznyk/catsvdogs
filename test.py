@@ -14,7 +14,7 @@ from utils import *
 from dataset import *
 from train import *
 
-model = EfficientNet.from_pretrained('effieientnet-b0')
+model = EfficientNet.from_pretrained('efficientnet-b0')
 print(model)
 
 test_dataset = CatDog('/content/data/test', transform=basic_transform)
