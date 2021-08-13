@@ -17,7 +17,7 @@ from train import *
 model = EfficientNet.from_pretrained('effieientnet-b0')
 print(model)
 
-test_dataset = CatDog('data/test', transform=basic_transform)
+test_dataset = CatDog('/content/data/test', transform=basic_transform)
 
 test_loader = DataLoader(test_dataset, batch_size=batch_size,
                          shuffle=True, num_workers=num_workers,
