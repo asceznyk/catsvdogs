@@ -27,6 +27,8 @@ batch = next(iter(loader))
 
 model.to(device)
 
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+
 if load_model and os.path.exists(checkpoint_file):
     ckpt = torch.load(checkpoint_file)
     model.load_state_dict(ckpt['state_dict'])
