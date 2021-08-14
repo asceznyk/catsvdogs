@@ -1,18 +1,24 @@
-import torch
 import os
 import pandas as pd
 import numpy as np
-import albumentations as A
-from albumentations.pytorch import ToTensorV2
-import config
-from tqdm import tqdm
-from dataset import CatDog
-from torch.utils.data import DataLoader
-from sklearn.metrics import log_loss
 
+import albumentations as A
+
+from albumentations.pytorch import ToTensorV2
+
+from tqdm import tqdm
+
+import torch
 import torch.nn as nn
 
+from torch.utils.data import DataLoader
+
+from sklearn.metrics import log_loss
+
 from efficientnet_pytorch import EfficientNet
+
+from config import *
+from dataset import *
 
 def init_data_model():
     model = EfficientNet.from_pretrained('efficientnet-b0')
