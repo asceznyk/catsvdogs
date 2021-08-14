@@ -10,6 +10,8 @@ from dataset import CatDog
 from torch.utils.data import DataLoader
 from sklearn.metrics import log_loss
 
+import torch.nn as nn
+
 from efficientnet_pytorch import EfficientNet
 
 def init_data_model():
