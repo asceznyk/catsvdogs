@@ -65,8 +65,8 @@ def main():
     model = EfficientNet.from_pretrained('efficientnet-b0')
     model._fc = nn.Linear(model._fc.in_features, 1)
 
-    train_dataset = CatDog('data/train', transform=basic_transform)
-    test_dataset = CatDog('data/test', transform=basic_transform)
+    train_dataset = CatDog('/content/data/train', transform=basic_transform)
+    test_dataset = CatDog('/content/data/test', transform=basic_transform)
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size,
                               shuffle=True, num_workers=num_workers,
