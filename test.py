@@ -23,8 +23,12 @@ test_loader = DataLoader(test_dataset, batch_size=batch_size,
                          shuffle=True, num_workers=num_workers,
                          pin_memory=pin_memory)
 
+batch = next(iter(test_loader))
+
 model.to(device)
 
-save_model_features(test_loader, model, output_size=(1,1))
+save_model_features(batch, model, output_size=(1,1))
 
 print('hallelujah!')
+
+
