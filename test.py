@@ -27,6 +27,16 @@ batch = next(iter(loader))
 
 model.to(device)
 
+if load_model and os.path.exists(checkpoint_file):
+    ckpt = torch.load(checkpoint_file)
+    model.load_state_dict(ckpt['state_dict'])
+    optimizer.load_state_dict(ckpt['optimizer'])
+    print('model and optimizer successfully loaded from checkpoint!')
+
+if save_model:
+    checkpoint = {'state_dict':model.state_dict(), 'optimizer':optimizer.state_dict()}
+    save_checkpoint(checkpoint, filename=checkpoint_file)
+
 save_model_features([batch], model, output_size=(1,1))
 
 print('hallelujah!')

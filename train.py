@@ -21,7 +21,7 @@ def train_one_epoch(loader, model, optimizer, loss_fn, scaler):
     loop = tqdm(loader)
     for b, (imgs, labels) in enumerate(loop):
         imgs = imgs.to(device)
-        labels = labels.unsqueeze().to(device)
+        labels = labels.unsqueeze(dim=1).to(device)
 
         def forward_pass():
             scores = model(imgs)
