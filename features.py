@@ -15,7 +15,7 @@ from config import *
 from utils import *
 from dataset import *
 
-def save_feature_vectors(model, loader, output_size=(1, 1)):
+def save_feature_vectors(loader, model, output_size=(1, 1)):
     model.eval()
     images, labels = [], []
 
