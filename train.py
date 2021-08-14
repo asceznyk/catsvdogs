@@ -62,7 +62,7 @@ def save_model_features(loader, model, output_size):
     model.train()
 
 def main():
-    model = EfficientNet.from_pretrained('effieientnet-b0')
+    model = EfficientNet.from_pretrained('efficientnet-b0')
     model._fc = nn.Linear(model._fc.in_features, 1)
 
     train_dataset = CatDog('data/train', transform=basic_transform)
