@@ -55,9 +55,7 @@ def save_feature_vectors(loader, model, output_size=(1, 1), split='train'):
 def main():
     model, train_loader, test_loader = init_data_model()
 
-    if load_model and os.path.exists(checkpoint_file):
-        load_checkpoint(torch.load(checkpoint_file), model)
-        print('model was successfully loaded from checkpoint!')
+    load_checkpoint(torch.load(checkpoint_file), model)
 
     save_feature_vectors(train_loader, model, output_size=(1,1))
     save_feature_vectors(test_loader, model, output_size=(1,1), split='test')
