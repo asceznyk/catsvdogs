@@ -45,10 +45,14 @@ def train_one_epoch(loader, model, optimizer, loss_fn, scaler):
 def main():
     model, train_loader, test_loader = init_data_model()
 
+    scaler = torch.cuda.amp.GradScaler()
+    loss_fn = nn.BCEWithLogitsLoss()
+    optimizer = optim.Adam(
+        model.parameters(), lr=config.LEARNING_RATE, weight_decay=config.WEIGHT_DECAY
+    )
+
     if load_model and os.path.exists(checkpoint_file):
-        ckpt = torch.load(checkpoint_file)
-        model.load_state_dict(ckpt['state_dict'])
-        optimizer.load_state_dict(ckpt['optimizer'])
+        load_checkpoint(torch.load(checkpoint_file), model)
         print('model and optimizer successfully loaded from checkpoint!')
 
     for e in range(num_epochs):
