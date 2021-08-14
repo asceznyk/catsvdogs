@@ -57,7 +57,7 @@ def main():
 
     for e in range(num_epochs):
         train_one_epoch(train_loader, model, optimizer, loss_fn, scaler)
-        check_accuracy(loader, model, loss_fn)
+        check_accuracy(train_loader, model, loss_fn)
 
     if save_model:
         checkpoint = {'state_dict':model.state_dict(), 'optimizer':optimizer.state_dict()}
