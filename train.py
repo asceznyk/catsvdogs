@@ -22,7 +22,7 @@ def train_one_epoch(loader, model, optimizer, loss_fn, scaler):
     loop = tqdm(loader)
     for b, (imgs, labels) in enumerate(loop):
         imgs = imgs.to(device)
-        labels = labels.to(device).unsqueeze(dim=1).float()
+        labels = labels.to(device).unsqueeze(1).float()
 
         with torch.cuda.amp.autocast():
             scores = model(imgs)

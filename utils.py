@@ -32,7 +32,7 @@ def init_data_model():
                               pin_memory=pin_memory)
 
     test_loader = DataLoader(test_dataset, batch_size=batch_size,
-                             shuffle=True, num_workers=num_workers,
+                             shuffle=False, num_workers=num_workers,
                              pin_memory=pin_memory)
 
     model.to(device)
