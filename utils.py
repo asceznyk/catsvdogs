@@ -10,6 +10,24 @@ from dataset import CatDog
 from torch.utils.data import DataLoader
 from sklearn.metrics import log_loss
 
+def init_data_model():
+    model = EfficientNet.from_pretrained('efficientnet-b0')
+    model._fc = nn.Linear(model._fc.in_features, 1)
+
+    train_dataset = CatDog('/content/data/train', transform=basic_transform)
+    test_dataset = CatDog('/content/data/test', transform=basic_transform)
+
+    train_loader = DataLoader(train_dataset, batch_size=batch_size,
+                              shuffle=True, num_workers=num_workers,
+                              pin_memory=pin_memory)
+
+    test_loader = DataLoader(test_dataset, batch_size=batch_size,
+                             shuffle=True, num_workers=num_workers,
+                             pin_memory=pin_memory)
+
+    model.to(device)
+
+    return model, train_loader, test_loader
 
 def check_accuracy(
     loader, model, loss_fn, input_shape=None, toggle_eval=True, print_accuracy=True

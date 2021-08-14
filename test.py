@@ -12,10 +12,9 @@ from efficientnet_pytorch import EfficientNet
 from config import *
 from utils import *
 from dataset import *
-from train import *
+from features import *
 
 model = EfficientNet.from_pretrained('efficientnet-b0')
-print(model)
 
 train_dataset = CatDog('/content/data/train', transform=basic_transform)
 
@@ -27,20 +26,10 @@ batch = next(iter(loader))
 
 model.to(device)
 
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
-
 if load_model and os.path.exists(checkpoint_file):
-    ckpt = torch.load(checkpoint_file)
-    model.load_state_dict(ckpt['state_dict'])
-    optimizer.load_state_dict(ckpt['optimizer'])
-    print('model and optimizer successfully loaded from checkpoint!')
-
-if save_model:
-    checkpoint = {'state_dict':model.state_dict(), 'optimizer':optimizer.state_dict()}
-    save_checkpoint(checkpoint, filename=checkpoint_file)
+    load_checkpoint(torch.loaded(checkpoint_file), model)
+    print('model and successfully loaded from checkpoint!')
 
 save_model_features([batch], model, output_size=(1,1))
-
-print('hallelujah!')
 
 
