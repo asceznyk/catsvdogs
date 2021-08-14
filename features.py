@@ -17,7 +17,7 @@ from config import *
 from utils import *
 from dataset import *
 
-def save_feature_vectors(loader, model, output_size=(1, 1)):
+def save_feature_vectors(loader, model, output_size=(1, 1), split='train'):
     model.eval()
     images, labels = [], []
 
@@ -34,8 +34,8 @@ def save_feature_vectors(loader, model, output_size=(1, 1)):
             print('sleeping for 4 seconds.. reducing RAM load...')
             time.sleep(4)
 
-            xpath = f'/content/features.npy'
-            ypath = f'/content/labels.npy'
+            xpath = f'/content/{split}features.npy'
+            ypath = f'/content/{split}labels.npy'
 
             if os.path.exists(xpath):
                 xs = np.load(xpath)
@@ -60,6 +60,7 @@ def main():
         print('model was successfully loaded from checkpoint!')
 
     save_feature_vectors(train_loader, model, output_size=(1,1))
+    save_feature_vectors(test_loader, model, output_size=(1,1), split='test')
 
 if __name__ == '__main__':
     main()
