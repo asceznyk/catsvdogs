@@ -55,7 +55,7 @@ def check_accuracy(
     y_true = []
 
     with torch.no_grad():
-        for x, y in loader:
+        for b, (x, y) in tqdm(enumerate(loader)):
             x = x.to(device=device)
             y = y.to(device=device)
             if input_shape:

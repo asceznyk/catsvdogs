@@ -58,3 +58,6 @@ def main():
         print('model was successfully loaded from checkpoint!')
 
     save_feature_vectors(train_loader, model, output_size=(1,1))
+
+if __name__ == '__main__':
+    main()
