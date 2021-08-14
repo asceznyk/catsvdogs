@@ -56,7 +56,7 @@ def save_model_features(loader, model, output_size):
         images.append(features.reshape(x.shape[0], -1).detach().cpu().numpy())
         labels.append(y.numpy())
 
-    np.save('featutes.npy', np.concatenate(images, axis=0))
+    np.save('features.npy', np.concatenate(images, axis=0))
     np.save('labels.npy', np.concatenate(labels, axis=0))
 
     model.train()
