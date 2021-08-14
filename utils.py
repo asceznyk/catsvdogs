@@ -10,6 +10,8 @@ from dataset import CatDog
 from torch.utils.data import DataLoader
 from sklearn.metrics import log_loss
 
+from efficientnet_pytorch import EfficientNet
+
 def init_data_model():
     model = EfficientNet.from_pretrained('efficientnet-b0')
     model._fc = nn.Linear(model._fc.in_features, 1)
