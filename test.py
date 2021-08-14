@@ -17,13 +17,13 @@ from train import *
 model = EfficientNet.from_pretrained('efficientnet-b0')
 print(model)
 
-test_dataset = CatDog('/content/data/test', transform=basic_transform)
+train_dataset = CatDog('/content/data/train', transform=basic_transform)
 
-test_loader = DataLoader(test_dataset, batch_size=batch_size,
+loader = DataLoader(train_dataset, batch_size=batch_size,
                          shuffle=True, num_workers=num_workers,
                          pin_memory=pin_memory)
 
-batch = next(iter(test_loader))
+batch = next(iter(loader))
 
 model.to(device)
 
