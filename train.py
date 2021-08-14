@@ -22,16 +22,25 @@ def train_one_epoch(loader, model, optimizer, loss_fn, scaler):
     loop = tqdm(loader)
     for b, (imgs, labels) in enumerate(loop):
         imgs = imgs.to(device)
-        labels = labels.unsqueeze(dim=1).to(device)
+        labels = labels.to(device).unsqueeze(dim=1).float()
 
-        with torch.cuda.amp.autocast():
+        def forward_pass():
             scores = model(imgs)
             loss = loss_fn(scores, labels)
+            return loss
 
-        optimizer.zero_grad()
-        scaler.scale(loss).backward()
-        scaler.step(optimizer)
-        scaler.update()
+        if device == 'cuda':
+            with torch.cuda.amp.autocast():
+                loss = forward_pass()
+
+            optimizer.zero_grad()
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
+        else:
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
 
 def main():
     model, train_loader, test_loader = init_data_model()
