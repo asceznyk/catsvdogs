@@ -16,9 +16,9 @@ from utils import *
 from dataset import *
 
 def train_one_epoch(loader, model, optimizer, loss_fn, scaler):
-    loop = tqdm(loader)
     model.train()
 
+    loop = tqdm(loader)
     for b, (imgs, labels) in enumerate(loop):
         imgs = imgs.to(device)
         labels = labels.to(device)
@@ -82,6 +82,12 @@ def main():
 
     model.to(device)
 
+    if load_model and os.path.exists(checkpoint_file):
+        ckpt = torch.load(checkpoint_file)
+        model.load_state_dict(ckpt['state_dict'])
+        optimizer.load_state_dict(ckpt['optimizer'])
+        print('model and optimizer successfully loaded from checkpoint!')
+
     for e in range(num_epochs):
         train_one_epoch(train_loader, model, optimizer, loss_fn, scaler)
         check_accuracy(loader, model, loss_fn)
@@ -90,6 +96,8 @@ def main():
         checkpoint = {'state_dict':model.state_dict(), 'optimizer':optimizer.state_dict()}
         save_checkpoint(checkpoint, filename=checkpoint_file)
 
-    #sav
+    save_model_features(train_loader, model, output_size=(1,1))
+    save_model_features(test_loader, model, output_size=(1,1))
+
 if __name__ == '__main__':
     main()
