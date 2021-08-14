@@ -27,7 +27,7 @@ batch = next(iter(test_loader))
 
 model.to(device)
 
-save_model_features(batch, model, output_size=(1,1))
+save_model_features([batch], model, output_size=(1,1))
 
 print('hallelujah!')
 
