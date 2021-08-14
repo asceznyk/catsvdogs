@@ -3,6 +3,7 @@ import numpy as np
 
 import torch
 import torch.nn as nn
+import torch.optim as optim
 import torch.nn.functional as F
 
 from torch.utils.data import DataLoader
@@ -48,7 +49,7 @@ def main():
     scaler = torch.cuda.amp.GradScaler()
     loss_fn = nn.BCEWithLogitsLoss()
     optimizer = optim.Adam(
-        model.parameters(), lr=config.LEARNING_RATE, weight_decay=config.WEIGHT_DECAY
+        model.parameters(), lr=learning_rate, weight_decay=weight_decay
     )
 
     if load_model and os.path.exists(checkpoint_file):
