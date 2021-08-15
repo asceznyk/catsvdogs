@@ -34,7 +34,7 @@ class CatDog(Dataset):
 
         return img, label
 
-def init_loader(path, shuffle, pin_memory)
+def init_loader(path, shuffle, pin_memory):
     train_dataset = CatDog(path, transform=config.basic_transform)
 
     loader = DataLoader(
