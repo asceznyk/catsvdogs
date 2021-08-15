@@ -39,7 +39,7 @@ def predict(num_batches=4):
 
         with torch.no_grad():
             features = model.extract_features(x)
-            features = F.adaptive_avg_pool2d(features, output_size=output_size)
+            features = F.adaptive_avg_pool2d(features, output_size=(1,1))
 
         features = features.reshape(x.shape[0], -1).detach().cpu().numpy()
         probs = clf.predict_proba(features)[:, 1]
