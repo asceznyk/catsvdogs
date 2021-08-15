@@ -35,13 +35,13 @@ class CatDog(Dataset):
         return img, label
 
 def init_loader(path, shuffle, pin_memory):
-    train_dataset = CatDog(path, transform=config.basic_transform)
+    dataset = CatDog(path, transform=config.basic_transform)
 
     loader = DataLoader(
-        test_dataset,
+        dataset,
         shuffle=shuffle,
         batch_size=config.batch_size,
-        num_workers=config.num_workers
+        num_workers=config.num_workers,
         pin_memory=pin_memory
     )
 
