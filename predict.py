@@ -25,8 +25,8 @@ def plt_images_labels(imgs, preds):
 
         pil_img = Image.fromarray((img * max_pixel_val).astype('uint8'))
         img_edit = ImageDraw.Draw(pil_img)
-        img_edit.rectangle((0, 0, 25, 10), fill='black')
-        img_edit.text((2,0), text, (0,255,0))
+        img_edit.rectangle((0, 0, 23, 10), fill='black')
+        img_edit.text((3,0), text, (0,255,0))
         pil_img.save(f'pred{i}.png')
 
     print('all images have been saved as .png files, you can check the predction at the top-left hand corner..')
