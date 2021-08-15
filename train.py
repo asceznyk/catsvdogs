@@ -12,6 +12,7 @@ from efficientnet_pytorch import EfficientNet
 
 from tqdm import tqdm
 
+from model import *
 from config import *
 from utils import *
 from dataset import *

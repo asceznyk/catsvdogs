@@ -12,6 +12,7 @@ from torch.utils.data import DataLoader
 
 from efficientnet_pytorch import EfficientNet
 
+from model import *
 from config import *
 from utils import *
 from dataset import *
