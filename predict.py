@@ -20,6 +20,10 @@ def plt_images_labels(imgs, preds):
         img = np.transpose(img, (1,2,0))
         title = 'cat' if pred < 0.5 else 'dog'
 
+        for c in range(3):
+            img[:,:,c] = img[:,:,c] * basic_stds[c] + basic_means[c]
+
+        print(img)
         print(img[img < 0])
 
         plt.imshow(img)

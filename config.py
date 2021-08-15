@@ -13,13 +13,17 @@ weight_decay = 1e-4
 learning_rate = 1e-4
 num_epochs = 1
 
+basic_means = [0.485, 0.456, 0.406]
+basic_stds = [0.229, 0.224, 0.225]
+max_pixel_val = 255.0
+
 basic_transform = A.Compose(
     [
         A.Resize(height=448, width=448),
         A.Normalize(
-            mean=[0.485, 0.456, 0.406],
-            std=[0.229, 0.224, 0.225],
-            max_pixel_value=255.0,
+            mean=basic_means,
+            std=basic_stds,
+            max_pixel_value=max_pixel_val,
         ),
         ToTensorV2(),
     ]
