@@ -17,9 +17,8 @@ from utils import *
 from dataset import *
 
 def train_one_epoch(loader, model, optimizer, loss_fn, scaler):
-    model.train()
-
     loop = tqdm(loader)
+
     for b, (imgs, labels) in enumerate(loop):
         imgs = imgs.to(device)
         labels = labels.to(device).unsqueeze(1).float()

@@ -18,12 +18,12 @@ x_train, x_val, y_train, y_val = train_test_split(x, y, test_size=0.001, random_
 clf = LogisticRegression(max_iter=2000)
 clf.fit(x_train, y_train)
 
-p_train = clf.predict_proba(x_train)[:, 1]
-loss = log_loss(y_train, p_train)
+p_val = clf.predict_proba(x_val)[:, 1]
+loss = log_loss(y_val, p_val)
 acc = clf.score(x_val, y_val)
 
-print(f'log loss: {loss}')
-print(f'accuaracy score: {acc}')
+print(f'log loss (validation): {loss}')
+print(f'accuaracy score (validation): {acc}')
 
 x_test = np.load('/content/testfeatures.npy')
 
