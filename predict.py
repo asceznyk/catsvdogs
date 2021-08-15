@@ -27,13 +27,10 @@ def plt_images_labels(imgs, preds):
 
         pil_img = Image.fromarray((img * max_pixel_val).astype('uint8'))
         img_edit = ImageDraw.Draw(pil_img)
-        img_edit.text((0,0), text, (0,0,0))
+        img_edit.text((0,0), text, (0,255,0))
         pil_img.save(f'pred{i}.png')
 
-        #plt.imshow(img)
-        #plt.title(title)
-        #plt.imsave(f'pred{i}.png', img)
-        #plt.show()
+    print('all images have been saved as .png files, you can check the predction at the top-left hand corner..')
 
 def predict(num_batches=4):
     clf = pickle.load(open('clf.log.regressor', 'rb'))
