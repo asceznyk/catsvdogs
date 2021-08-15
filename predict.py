@@ -28,7 +28,7 @@ def plt_images_labels(imgs, preds):
         pil_img = Image.fromarray((img * max_pixel_val).astype('uint8'))
         img_edit = ImageDraw.Draw(pil_img)
         img_edit.text((0,0), text, (0,0,0))
-        pil_img.save(f'pred{i}.png', img)
+        pil_img.save(f'pred{i}.png')
 
         #plt.imshow(img)
         #plt.title(title)
