@@ -3,8 +3,6 @@ import numpy as np
 
 from PIL import Image, ImageFont, ImageDraw
 
-#import matplotlib.pyplot as plt
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -27,7 +25,8 @@ def plt_images_labels(imgs, preds):
 
         pil_img = Image.fromarray((img * max_pixel_val).astype('uint8'))
         img_edit = ImageDraw.Draw(pil_img)
-        img_edit.text((0,0), text, (0,255,0))
+        font = ImageFont.truetype('arial.ttf', 200)
+        img_edit.text((0,0), text, (0,255,0), font)
         pil_img.save(f'pred{i}.png')
 
     print('all images have been saved as .png files, you can check the predction at the top-left hand corner..')
