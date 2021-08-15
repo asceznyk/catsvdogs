@@ -1,3 +1,4 @@
+import os
 import pickle
 import numpy as np
 
@@ -16,6 +17,9 @@ from utils import *
 from dataset import *
 
 def plt_images_labels(imgs, preds):
+    if not os.path.exists('outputs'):
+        os.mkdir('outputs')
+
     for i, (img, pred) in enumerate(zip(imgs, preds)):
         img = np.transpose(img, (1,2,0))
         text = 'cat' if pred < 0.5 else 'dog'
@@ -27,9 +31,9 @@ def plt_images_labels(imgs, preds):
         img_edit = ImageDraw.Draw(pil_img)
         img_edit.rectangle((0, 0, 23, 10), fill='black')
         img_edit.text((3,0), text, (0,255,0))
-        pil_img.save(f'pred{i}.png')
+        pil_img.save(f'outputs/pred{i}.png')
 
-    print('all images have been saved as .png files, you can check the predction at the top-left hand corner..')
+    print('all images have been saved as .png files in outputs folder, you can check the predction at the top-left hand corner..')
 
 def predict(num_batches=4):
     clf = pickle.load(open('clf.log.regressor', 'rb'))
