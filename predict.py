@@ -40,7 +40,7 @@ def predict(num_batches=4):
     clf = pickle.load(open('clf.log.regressor', 'rb'))
 
     model = init_model()
-    test_loader = init_loader('/content/data/test', False, not pin_memory)
+    test_loader = init_loader('/content/data/test', True, not pin_memory)
 
     load_checkpoint(torch.load(checkpoint_file), model)
 
@@ -60,7 +60,7 @@ def predict(num_batches=4):
         imgs.append(x.detach().cpu().numpy())
         preds.append(probs)
 
-        if b >= num_batches:
+        if b == (num_batches-1):
             imgs = np.concatenate(imgs, axis=0)
             preds = np.concatenate(preds, axis=0)
             plt_images_labels(imgs, preds)

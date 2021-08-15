@@ -32,7 +32,7 @@ print(x_test.shape)
 p_test = clf.predict_proba(x_test)[:, 1]
 df = pd.DataFrame({'id': np.arange(1, 12501), 'label': np.clip(p_test, 0.005, 0.995)})
 df.to_csv('yosubmission.csv', index=0)
-print(f'saving yosubmission.csv file...')
+print(f'saving nsubmission.csv file...')
 
 filename = 'clf.log.regressor'
 pickle.dump(clf, open(filename, 'wb'))
