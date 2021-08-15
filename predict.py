@@ -25,8 +25,7 @@ def plt_images_labels(imgs, preds):
         for c in range(3):
             img[:,:,c] = img[:,:,c] * basic_stds[c] + basic_means[c]
 
-        print(img.shape)
-        pil_img = Image.fromarray(img)
+        pil_img = Image.fromarray((img * max_pixel_val).astype('uint8'))
         img_edit = ImageDraw.Draw(pil_img)
         img_edit.text((0,0), text, (0,0,0))
         pil_img.save(f'pred{i}.png', img)
