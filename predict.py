@@ -1,7 +1,9 @@
 import pickle
 import numpy as np
 
-import matplotlib.pyplot as plt
+from PIL import Image, ImageFont, ImageDraw
+
+#import matplotlib.pyplot as plt
 
 import torch
 import torch.nn as nn
@@ -18,18 +20,20 @@ from dataset import *
 def plt_images_labels(imgs, preds):
     for i, (img, pred) in enumerate(zip(imgs, preds)):
         img = np.transpose(img, (1,2,0))
-        title = 'cat' if pred < 0.5 else 'dog'
+        text = 'cat' if pred < 0.5 else 'dog'
 
         for c in range(3):
             img[:,:,c] = img[:,:,c] * basic_stds[c] + basic_means[c]
 
-        print(img)
-        print(img[img < 0])
+        pil_img = Image.fromarray(img)
+        img_edit = ImageDraw.Draw(pil_img)
+        img_edit.text((0,0), text, (0,0,0))
+        pil_img.save(f'pred{i}.png', img)
 
-        plt.imshow(img)
-        plt.title(title)
-        plt.imsave(f'pred{i}.png', img)
-        plt.show()
+        #plt.imshow(img)
+        #plt.title(title)
+        #plt.imsave(f'pred{i}.png', img)
+        #plt.show()
 
 def predict(num_batches=4):
     clf = pickle.load(open('clf.log.regressor', 'rb'))
