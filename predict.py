@@ -26,6 +26,7 @@ def plt_images_labels(imgs, preds):
         pil_img = Image.fromarray((img * max_pixel_val).astype('uint8'))
         img_edit = ImageDraw.Draw(pil_img)
         font = ImageFont.truetype(None, 200)
+        img_edit.rectangle((0,0, 40, 10), fill='black')
         img_edit.text((0,0), text, (0,255,0), font)
         pil_img.save(f'pred{i}.png')
 
