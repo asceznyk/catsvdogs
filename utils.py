@@ -27,13 +27,20 @@ def init_data_model():
     train_dataset = CatDog('/content/data/train', transform=basic_transform)
     test_dataset = CatDog('/content/data/test', transform=basic_transform)
 
-    train_loader = DataLoader(train_dataset, batch_size=batch_size,
-                              shuffle=True, num_workers=num_workers,
-                              pin_memory=pin_memory)
+    train_loader = DataLoader(
+        train_dataset,
+        shuffle=True,
+        batch_size=batch_size,
+        num_workers=num_workers,
+        pin_memory=pin_memory
+    )
 
-    test_loader = DataLoader(test_dataset, batch_size=batch_size,
-                             shuffle=False, num_workers=num_workers,
-                             pin_memory=pin_memory)
+    test_loader = DataLoader(
+        test_dataset,
+        shuffle=False,
+        batch_size=batch_size,
+        num_workers=num_workers
+    )
 
     model.to(device)
 
