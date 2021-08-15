@@ -54,3 +54,5 @@ def predict(num_batches=4):
             plt_images_labels(imgs, preds)
             break
 
+if __name__ == '__main__':
+    predict()
