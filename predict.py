@@ -20,6 +20,8 @@ def plt_images_labels(imgs, preds):
         img = np.transpose(img, (1,2,0))
         title = 'cat' if pred < 0.5 else 'dog'
 
+        print(img[img < 0])
+
         plt.imshow(img)
         plt.title(title)
         plt.imsave(f'pred{i}.png', img)
