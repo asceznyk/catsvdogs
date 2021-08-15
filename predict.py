@@ -1,9 +1,7 @@
+import pickle
 import numpy as np
 
 import matplotlib.pyplot as plt
-
-import PIL
-from PIL import Image
 
 import torch
 import torch.nn as nn
