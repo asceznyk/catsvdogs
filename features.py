@@ -13,8 +13,8 @@ from efficientnet_pytorch import EfficientNet
 
 from tqdm import tqdm
 
-from model import *
 from config import *
+from model import *
 from utils import *
 from dataset import *
 
@@ -54,7 +54,9 @@ def save_feature_vectors(loader, model, output_size=(1, 1), split='train'):
     model.train()
 
 def main():
-    model, train_loader, test_loader = init_data_model()
+    model = init_model()
+    train_loader = init_loader('/content/data/train', True, pin_memory)
+    test_loader = init_loader('/content/data/test', False, not pin_memory)
 
     load_checkpoint(torch.load(checkpoint_file), model)
 

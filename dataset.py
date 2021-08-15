@@ -1,8 +1,12 @@
 import os
 import re
 import numpy as np
+
 from torch.utils.data import Dataset
+
 from PIL import Image
+
+import config
 
 class CatDog(Dataset):
     def __init__(self, root, transform=None):
@@ -30,3 +34,15 @@ class CatDog(Dataset):
 
         return img, label
 
+def init_loader(path, shuffle, pin_memory)
+    train_dataset = CatDog(path, transform=config.basic_transform)
+
+    loader = DataLoader(
+        test_dataset,
+        shuffle=shuffle,
+        batch_size=config.batch_size,
+        num_workers=config.num_workers
+        pin_memory=pin_memory
+    )
+
+    return loader

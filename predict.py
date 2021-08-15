@@ -12,8 +12,8 @@ from torch.utils.data import DataLoader
 
 from efficientnet_pytorch import EfficientNet
 
-from model import *
 from config import *
+from model import *
 from utils import *
 from dataset import *
 
@@ -39,8 +39,11 @@ def plt_images_labels(imgs, preds):
 def predict(num_batches=4):
     clf = pickle.load(open('clf.log.regressor', 'rb'))
 
-    model, _, test_loader = init_data_model()
+    model = init_model()
+    test_loader = init_loader('/content/data/test', False, not pin_memory)
+
     load_checkpoint(torch.load(checkpoint_file), model)
+
     model.eval()
 
     imgs, preds = [], []

@@ -12,8 +12,8 @@ from efficientnet_pytorch import EfficientNet
 
 from tqdm import tqdm
 
-from model import *
 from config import *
+from model import *
 from utils import *
 from dataset import *
 
@@ -35,7 +35,9 @@ def train_one_epoch(loader, model, optimizer, loss_fn, scaler):
         loop.set_postfix(loss=loss.item())
 
 def main():
-    model, train_loader, test_loader = init_data_model()
+    model = init_model()
+    train_loader = init_loader('/content/data/train', True, pin_memory)
+    test_loader = init_loader('/content/data/test', False, not pin_memory)
 
     scaler = torch.cuda.amp.GradScaler()
     loss_fn = nn.BCEWithLogitsLoss()
