@@ -2,7 +2,7 @@ import os
 import re
 import numpy as np
 
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, DataLoader
 
 from PIL import Image
 
